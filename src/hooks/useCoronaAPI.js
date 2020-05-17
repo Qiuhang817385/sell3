@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 // 共享从 NovelCOVID 19 API 获取数据的逻辑。
 const BASE_URL = "https://corona.lmao.ninja/v2";
 // 这里的useEffect留了一个坑
@@ -13,7 +13,7 @@ export default function useCoronaAPI (
    */
 ) {
   const [data, setData] = useState(initialData);
-  // converter这里不难传递这个函数做优化
+  // converter这里传递这个函数做优化
   // const convertData = useCallback(converter, []);
   // const convertData = useCallback((v) => {
   //   converter(v)
@@ -23,7 +23,6 @@ export default function useCoronaAPI (
     return converter
   }, []);
 
-  console.log('执行了')
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`${BASE_URL}${path}`);
